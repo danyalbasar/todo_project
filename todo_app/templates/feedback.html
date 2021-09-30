@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %} Feedback Page {% endblock %}
+
+{% block content %}
+
+	<h1>Feedback Form</h1>
+
+	<form method="POST">
+	{%csrf_token %}
+		<table border="2">
+			{{ fm.as_table }}
+		</table>
+		<br>
+		<input type="Submit" class="btn" style="width:200;">
+	</form>
+
+	<p style="color:blue">{{ msg }}<p>
+
+{% endblock %}

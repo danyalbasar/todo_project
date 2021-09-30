@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit Page {% endblock %}
+
+{% block content %}
+
+	<h1>Edit Task</h1>
+
+	<form method="POST">
+	{% csrf_token %}
+		<table border="2">
+		<tr>
+			<td>&nbsp;<b>Task:</b></td>
+			<td>{{ fm.task }}</td>
+		</tr>
+		<tr>
+			<td>&nbsp;<b>Completed:</b>&ensp;</td>
+			<td style="padding:10px;">{{ fm.completed }}</td>
+		</tr>
+		</table>
+		<br>
+		<input type="Submit" value="Save" class="btn">
+	</form>
+
+{% endblock %}

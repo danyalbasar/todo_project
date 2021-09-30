@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} View Page {% endblock %}
+
+{% block content %}
+	<h1>View All Tasks</h1>
+	<a href="{% url 'create' %}" style="color:blue; font-size:35px; text-decoration:none;">Create New Task</a>
+	<br><br>
+	<table border="2">
+	{% for v in view_tasks %}
+		{% if v.completed == True %}
+			<tr>
+				<td style="padding:10px;"><strike>{{ v.task }}</strike></td>
+				<td style="padding:10px; font-size:30px;">{{ v.created }}</td>
+				<td style="padding:10px;"><a href="{% url 'edit' id=v.task %}" style="color:blue; text-decoration:none; font-size:35px;">Edit</a></td>
+				<td style="padding:10px;"><a href="{% url 'delete' id=v.task %}" onclick="return confirm('Are you sure you want to delete {{ v.task }}?')" style="color:red; text-decoration:none; font-size:35px;">Delete</a></td>
+			</tr>
+		{% else %}
+			<tr>
+				<td style="padding:10px;">{{ v.task }}</td>
+				<td style="padding:10px; font-size:30px;">{{ v.created }}</td>
+				<td style="padding:10px;"><a href="{% url 'edit' id=v.task %}" style="color:blue; text-decoration:none; font-size:35px;">Edit</a></td>
+				<td style="padding:10px;"><a href="{% url 'delete' id=v.task %}" onclick="return confirm('Are you sure you want to delete {{ v.task }}?')" style="color:red; text-decoration:none; font-size:35px;">Delete</a></td>
+			</tr>
+		{% endif %}
+	{% empty %}
+		<tr>
+			<td style="padding:10px">No Tasks Added</td>
+		</tr>
+	{% endfor %}
+	</table>
+{% endblock %}
