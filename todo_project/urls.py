@@ -1,17 +1,17 @@
 from django.contrib import admin
 from django.urls import path
-from todo_app.views import usignup, ulogin, ulogout, uforgotpass, home, create, view, edit, delete, feedback
+from todo_app.views import user_signup, user_login, user_forgotpass, user_logout, home, create, view, edit, delete, feedback
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("usignup/", usignup, name="usignup"),
-    path("ulogin/", ulogin, name="ulogin"),
-    path("ulogout/", ulogout, name="ulogout"),
-    path("uforgotpass/", uforgotpass, name="uforgotpass"),    
+    path("user_signup/", user_signup, name="user_signup"),
+    path("user_login/", user_login, name="user_login"),
+    path("user_forgotpass/", user_forgotpass, name="user_forgotpass"),
+    path("user_logout/", user_logout, name="user_logout"),
     path("", home, name="home"),
     path("create/", create, name="create"),
     path("view/", view, name="view"),
     path("edit/<str:id>", edit, name="edit"),
     path("delete/<str:id>", delete, name="delete"),
-    path("feedback/", feedback, name="feedback"),
+    path("feedback/", feedback, name="feedback"),    
 ]
