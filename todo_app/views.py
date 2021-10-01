@@ -96,8 +96,6 @@ def view(request):
 
 def edit(request, id):
 	edit_task = TasksModel.objects.get(task=id)
-	
-	fm = TasksForm(instance=edit_task)
 
 	if request.method == "POST":
 		task = TasksForm(request.POST, instance=edit_task)
@@ -106,7 +104,7 @@ def edit(request, id):
 		fm = TasksForm()
 		return redirect("view")
 
-	return render(request, "edit.html", {"fm":fm})
+	return render(request, "edit.html", {"fm":edit_task})
 
 def delete(request, id):
 	delete_task = TasksModel.objects.filter(task=id).first()
