@@ -1,34 +1,34 @@
 <html>
 <head>
 	<title>{% block title %}{% endblock %}</title>
-	<style>
-		*{font-size:40px;}
-		#nav{background-color:black;}
-		#nav a{color:white; padding:30px; text-decoration:none;}
-		.btn{background-color:black; color:white; width:175; text-align:center; border-radius: 30px;}
-		.btn:focus{background-color:white; color:black;}
-		.btn:hover{cursor:hand;}
-	</style>
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
-<center>
-	<div id="nav">
-		{% if user.is_authenticated %}
-			<a href="{% url 'home' %}">Home</a>
-			<a href="{% url 'create' %}">Create</a>
-			<a href="{% url 'view' %}">View</a>
-			<a href="{% url 'feedback' %}">Feedback</a>
-			<a href="{% url 'ulogout' %}">Logout</a>
-		{% else %}
-			<a href="{% url 'home' %}">Login</a>
-			<a href="{% url 'usignup' %}">Signup</a>
-			<a href="{% url 'uforgotpass' %}">Forgot Password</a>
-		{% endif %}
-	</div>
-	{% block content %}{% endblock %}
-</center>
-</body>
-</html>
-			
 
-		
+<header class="text-gray-600 body-font">
+<div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+<a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-blue-500 rounded-full" viewBox="0 0 24 24">
+<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+</svg>
+<span class="ml-3 text-xl">Task Manager</span>
+</a>
+<nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400 flex flex-wrap items-center text-base justify-center">
+{% if user.is_authenticated %}
+	<a class="mr-5 hover:text-gray-900" href="{% url 'home' %}">Home</a>
+	<a class="mr-5 hover:text-gray-900" href="{% url 'create' %}">Create</a>
+	<a class="mr-5 hover:text-gray-900" href="{% url 'view' %}">View</a>
+	<a class="mr-5 hover:text-gray-900" href="{% url 'feedback' %}">Feedback</a>
+	<a class="mr-5 hover:text-gray-900" href="{% url 'user_logout' %}">Logout</a>
+{% else %}
+	<a class="mr-5 hover:text-gray-900" href="{% url 'user_login' %}">Login</a>
+	<a class="mr-5 hover:text-gray-900" href="{% url 'user_signup' %}">Sign Up</a>
+	<a class="mr-5 hover:text-gray-900" href="{% url 'user_forgotpass' %}">Reset Password</a>
+	<a class="mr-5 hover:text-gray-900" href="{% url 'feedback' %}">Feedback</a>
+{% endif %}
+</nav>
+</div>
+</header>
+	{% block content %}{% endblock %}
+</body>
+</html>	
