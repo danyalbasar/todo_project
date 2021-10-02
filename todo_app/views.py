@@ -79,7 +79,6 @@ def home(request):
 @login_required(login_url="user_login")
 def create(request):
 	if request.method == "POST":
-		#task_data = TasksForm(request.POST)
 		task = request.POST['task']    
 		task_data = TasksModel.objects.create(user=request.user, task=task)
 		task_data.save()
@@ -99,8 +98,9 @@ def edit(request, id):
 
 	if request.method == "POST":
 		task = TasksForm(request.POST, instance=edit_task)
-		edit_task.task = request.POST['edit_task']
-		TasksModel.objects.filter(task=id).update(task=edit_task.task)
+		edit_task.task= request.POST['edit_task']
+		completed = request.POST.get('checked', '') == 'on'
+		TasksModel.objects.filter(task=id).update(task=edit_task.task, completed=completed)
 		fm = TasksForm()
 		return redirect("view")
 
